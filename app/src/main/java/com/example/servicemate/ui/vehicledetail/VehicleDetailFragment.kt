@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.servicemate.R
 import com.example.servicemate.data.AppDatabase
 import com.example.servicemate.data.repository.MaintenanceRepository
 import com.example.servicemate.data.repository.VehicleRepository
@@ -45,8 +47,10 @@ class VehicleDetailFragment : Fragment() {
         observeHistory(vehicleId)
 
         binding.btnLogMaintenance.setOnClickListener {
-            // Wired up fully in Phase 5 (Log Maintenance screen)
-            Toast.makeText(requireContext(), "Coming in Phase 5", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(
+                R.id.action_vehicleDetailFragment_to_logMaintenanceFragment,
+                bundleOf("vehicleId" to vehicleId)
+            )
         }
     }
 

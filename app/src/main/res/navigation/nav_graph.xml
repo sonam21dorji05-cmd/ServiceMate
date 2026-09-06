@@ -71,6 +71,21 @@
         <argument
             android:name="vehicleId"
             app:argType="long" />
+
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_logMaintenanceFragment"
+            app:destination="@id/logMaintenanceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/logMaintenanceFragment"
+        android:name="com.example.servicemate.ui.logmaintenance.LogMaintenanceFragment"
+        android:label="Log Maintenance"
+        tools:layout="@layout/fragment_log_maintenance">
+
+        <argument
+            android:name="vehicleId"
+            app:argType="long" />
     </fragment>
 
 </navigation>
