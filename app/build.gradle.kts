@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.servicemate"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.servicemate"
