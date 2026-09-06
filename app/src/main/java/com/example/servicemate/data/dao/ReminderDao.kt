@@ -10,7 +10,7 @@ interface ReminderDao {
     suspend fun insert(reminder: Reminder): Long
 
     @Update
-    suspend fun update(reminder: Reminder)
+    suspend fun update(reminder: Reminder): Int
 
     @Query("""
         SELECT reminders.* FROM reminders

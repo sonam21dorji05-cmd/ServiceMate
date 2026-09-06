@@ -46,6 +46,31 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_addVehicleFragment"
+            app:destination="@id/addVehicleFragment" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addVehicleFragment"
+        android:name="com.example.servicemate.ui.addvehicle.AddVehicleFragment"
+        android:label="Add Vehicle"
+        tools:layout="@layout/fragment_add_vehicle" />
+
+    <fragment
+        android:id="@+id/vehicleDetailFragment"
+        android:name="com.example.servicemate.ui.vehicledetail.VehicleDetailFragment"
+        android:label="Vehicle Detail"
+        tools:layout="@layout/fragment_vehicle_detail">
+
+        <argument
+            android:name="vehicleId"
+            app:argType="long" />
     </fragment>
 
 </navigation>
