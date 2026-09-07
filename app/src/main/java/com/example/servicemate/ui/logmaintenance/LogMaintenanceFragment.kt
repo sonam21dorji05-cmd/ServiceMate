@@ -1,6 +1,5 @@
 package com.example.servicemate.ui.logmaintenance
 
-import android.R
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.servicemate.data.AppDatabase
 import com.example.servicemate.data.model.MaintenanceRecord
 import com.example.servicemate.data.repository.MaintenanceRepository
+import com.example.servicemate.data.repository.ReminderRepository
 import com.example.servicemate.data.repository.VehicleRepository
 import com.example.servicemate.databinding.FragmentLogMaintenanceBinding
 import kotlinx.coroutines.launch
@@ -28,6 +28,7 @@ class LogMaintenanceFragment : Fragment() {
 
     private lateinit var maintenanceRepository: MaintenanceRepository
     private lateinit var vehicleRepository: VehicleRepository
+    private lateinit var reminderRepository: ReminderRepository
 
     private val calendar = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
@@ -51,6 +52,7 @@ class LogMaintenanceFragment : Fragment() {
         val db = AppDatabase.getInstance(requireContext())
         maintenanceRepository = MaintenanceRepository(db.maintenanceDao())
         vehicleRepository = VehicleRepository(db.vehicleDao())
+        reminderRepository = ReminderRepository(db.reminderDao())
 
         val vehicleId = requireArguments().getLong("vehicleId")
 
@@ -62,7 +64,7 @@ class LogMaintenanceFragment : Fragment() {
     }
 
     private fun setupServiceTypeDropdown() {
-        val adapter = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, serviceTypes)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, serviceTypes)
         binding.actServiceType.setAdapter(adapter)
     }
 
@@ -111,6 +113,9 @@ class LogMaintenanceFragment : Fragment() {
         setLoading(true)
         viewLifecycleOwner.lifecycleScope.launch {
             maintenanceRepository.addRecord(record)
+            reminderRepository.upsertReminderForService(
+                vehicleId, serviceType, odometer, selectedDateMillis
+            )
 
             // Keep the vehicle's current odometer in sync with the latest service reading
             val vehicle = vehicleRepository.getVehicleById(vehicleId)

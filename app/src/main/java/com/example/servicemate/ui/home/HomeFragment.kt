@@ -56,6 +56,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_addVehicleFragment)
         }
 
+        binding.tvReminders.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_remindersFragment)
+        }
+
         binding.tvLogout.setOnClickListener {
             SessionManager.clearSession(requireContext())
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
