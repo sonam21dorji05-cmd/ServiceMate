@@ -59,6 +59,18 @@
         app:layout_constraintTop_toBottomOf="@id/tvVehicleCount" />
 
     <TextView
+        android:id="@+id/tvProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:padding="4dp"
+        android:text="Profile"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvReminders"
+        app:layout_constraintTop_toTopOf="@id/tvReminders" />
+
+    <TextView
         android:id="@+id/tvSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

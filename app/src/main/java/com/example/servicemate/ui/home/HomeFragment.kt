@@ -60,6 +60,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_remindersFragment)
         }
 
+        binding.tvProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
+
         binding.tvLogout.setOnClickListener {
             SessionManager.clearSession(requireContext())
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
